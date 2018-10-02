@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on CODING BLOG</title>
-    <link>https://www.example.com/posts/</link>
+    <link>https://snapdragonxc.github.io/posts/</link>
     <description>Recent content in Posts on CODING BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; &lt;a href=&#34;https://github.com/snapdragonxc&#34;&gt;Snapdragonxc&lt;/a&gt; 2018</copyright>
     <lastBuildDate>Wed, 26 Sep 2018 13:08:23 +1000</lastBuildDate>
     
-	<atom:link href="https://www.example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://snapdragonxc.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AWS Part 3</title>
-      <link>https://www.example.com/posts/aws-pt3/</link>
+      <link>https://snapdragonxc.github.io/posts/aws-pt3/</link>
       <pubDate>Wed, 26 Sep 2018 13:08:23 +1000</pubDate>
       
-      <guid>https://www.example.com/posts/aws-pt3/</guid>
+      <guid>https://snapdragonxc.github.io/posts/aws-pt3/</guid>
       <description>&lt;p&gt;Continuing on from where we left off in AWS Part 2, this post describes the Continuous Deployment step of Jenkins, which occurs if the Integration step is successfull.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -25,10 +25,10 @@
     
     <item>
       <title>AWS Part 2</title>
-      <link>https://www.example.com/posts/aws-pt2/</link>
+      <link>https://snapdragonxc.github.io/posts/aws-pt2/</link>
       <pubDate>Tue, 25 Sep 2018 13:08:23 +1000</pubDate>
       
-      <guid>https://www.example.com/posts/aws-pt2/</guid>
+      <guid>https://snapdragonxc.github.io/posts/aws-pt2/</guid>
       <description>&lt;p&gt;Once you have set up a server and started using it, you will want to automate the installation of new code. Jenkins does this in a two step process. This post describes the first step, which is the Continuous Integration step.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -36,10 +36,10 @@
     
     <item>
       <title>AWS Part 1</title>
-      <link>https://www.example.com/posts/aws-pt1/</link>
+      <link>https://snapdragonxc.github.io/posts/aws-pt1/</link>
       <pubDate>Mon, 24 Sep 2018 07:43:06 +1000</pubDate>
       
-      <guid>https://www.example.com/posts/aws-pt1/</guid>
+      <guid>https://snapdragonxc.github.io/posts/aws-pt1/</guid>
       <description>&lt;p&gt;Hosting a webpage online can seem like a daunting task when first starting, made even more confusing by the many different products available. This post decribes the steps required for hosting a webpage on AWS.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -47,10 +47,10 @@
     
     <item>
       <title>SPIES</title>
-      <link>https://www.example.com/posts/spies/</link>
+      <link>https://snapdragonxc.github.io/posts/spies/</link>
       <pubDate>Wed, 12 Sep 2018 07:45:42 +1000</pubDate>
       
-      <guid>https://www.example.com/posts/spies/</guid>
+      <guid>https://snapdragonxc.github.io/posts/spies/</guid>
       <description>&lt;p&gt;Spies in Testing frameworks, such as Jasmine and Jest, determine whether or not a Unit under test has called a particular member function or not. This post looks at how spies work by creating a working spy function.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -58,10 +58,10 @@
     
     <item>
       <title>Test Runners</title>
-      <link>https://www.example.com/posts/test-runners/</link>
+      <link>https://snapdragonxc.github.io/posts/test-runners/</link>
       <pubDate>Tue, 11 Sep 2018 21:22:07 +1000</pubDate>
       
-      <guid>https://www.example.com/posts/test-runners/</guid>
+      <guid>https://snapdragonxc.github.io/posts/test-runners/</guid>
       <description>&lt;p&gt;Writing your own Test Runner will give you greater insight and confidence when using one of the professional frameworks such as Jasmine or Jest. In this post a simple Test Runner will be developed and applied to a basic Maths library.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -69,10 +69,10 @@
     
     <item>
       <title>ReactJS</title>
-      <link>https://www.example.com/posts/reactjs-views/</link>
+      <link>https://snapdragonxc.github.io/posts/reactjs-views/</link>
       <pubDate>Wed, 05 Sep 2018 07:45:42 +1000</pubDate>
       
-      <guid>https://www.example.com/posts/reactjs-views/</guid>
+      <guid>https://snapdragonxc.github.io/posts/reactjs-views/</guid>
       <description>&lt;p&gt;When working on large projects in ReactJS there are certain design patterns to follow which will make your life easier. This post describes the Container Component pattern by way of example.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -80,10 +80,10 @@
     
     <item>
       <title>Redux</title>
-      <link>https://www.example.com/posts/redux/</link>
+      <link>https://snapdragonxc.github.io/posts/redux/</link>
       <pubDate>Mon, 03 Sep 2018 07:45:42 +1000</pubDate>
       
-      <guid>https://www.example.com/posts/redux/</guid>
+      <guid>https://snapdragonxc.github.io/posts/redux/</guid>
       <description>&lt;p&gt;Redux manages the overall state of a ReactJS application with multiple components. The question is when to use it in your application and what components need to use it. This post provides two examples that help answer that question.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -91,10 +91,10 @@
     
     <item>
       <title>Flow</title>
-      <link>https://www.example.com/posts/flow/</link>
+      <link>https://snapdragonxc.github.io/posts/flow/</link>
       <pubDate>Sun, 02 Sep 2018 07:45:42 +1000</pubDate>
       
-      <guid>https://www.example.com/posts/flow/</guid>
+      <guid>https://snapdragonxc.github.io/posts/flow/</guid>
       <description>&lt;p&gt;Flow is the replacement for Prop-Types in ReactJS. When you install packages in your project, you will need the type definitions for these packages. This is a short post describing how to get these.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
