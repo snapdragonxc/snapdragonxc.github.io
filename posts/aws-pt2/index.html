@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<title>AWS Part 2 | CODING BLOG</title>
+
+
+<link rel="stylesheet" href="/css/style.css"/><link rel='stylesheet' href='https://www.example.com/css/custom.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="\/\/matomo.example.com\/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+  <img src="//matomo.example.com/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" />
+</noscript>
+
+
+
+<div class="row">
+    <header class="header">
+  <div class="header__wrap">
+    <div class="row">
+    <div class="header__left xs-col-span-12 sm-col-span-6">
+      <a class="header__title-link" href="https://www.example.com"><h1 class="header__title">CODING BLOG</h1></a>
+    </div>
+
+    <nav class="header__right xs-col-span-12 sm-col-span-6"><a class="header__social-link" aria-label="author"
+          href='/about'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M21,21V17.5 c0-2.76-4-5-9-5s-9,2.24-9,5v3.5"/>
+    <path d="M12,1
+    A
+    3.5, 3.5,
+    0,
+    0,
+    1,
+    12.0, 12.0,
+    M12,1
+    A
+    3.5, 3.5,
+    0,
+    0,
+    0,
+    12.0, 12.0,
+    "/>
+    
+  </svg>
+</a><a class="header__social-link" aria-label="email"
+          href='mailto:snapdragonxc@gmail.com'target='_blank'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg>
+</a><a class="header__social-link" aria-label="github"
+          href='https://github.com/snapdragonxc'target='_blank'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg>
+</a></nav>
+    <div class="clear-fix"></div>
+    </div>
+  </div>
+</header>
+
+</div>
+
+<div class="wrapper wrapper--small">
+  <div class="row">
+    <article class="single">
+      <div class="single__wrap">
+        <div class="single-article__heading single-article__heading--single">
+          <h2 class="single-article__title">
+            <span class="single-article__title--main">AWS Part 2</span>
+            <span class="single-article__title--sub">Continuous Integration with Jenkins</span>
+          </h2>
+          <h4 class="single-article__date">September 25, 2018</h4>
+        </div>
+
+        <div class="single__content">
+          <p>Once you have set up a server and started using it, you will want to automate the installation of new code. Jenkins does this in a two step process. This post describes the first step, which is the Continuous Integration step.</p>
+
+<p></p>
+
+<p>Jenkins is a server that acts as an intermediate between your Github account and the server running your app. When you push your updated code from your desktop computer to your github account it will grab these updates and install them on the server containing your app for you.</p>
+
+<p>Jenkins is typically configured to perform a two step process, namely Continuous Integration (CI) followed by Continuous Deployment (CD). Continuous Integration is the running of the test script(s) for you app. If these pass then Jenkins will run the deploy script(s) to push the updated code to your server and install it. This is the Continuous Deployment step.</p>
+
+<p>This post will walk you through the setting up of a Jenkins CI/CD for the app that you installed on the server in AWS Part 1.</p>
+
+<h2 id="getting-an-ec2-instance">Getting an EC2 Instance</h2>
+
+<p>To begin with you will require a Jenkins server installed on an AWS EC2 instance. Follow the steps in AWS Part 1 to launch an EC2 instance and install Nginx, NodeJS and Mongodb.</p>
+
+<p>Jenkins operates on Port 8080, hence the configuration of the reverse proxy is identical except for the domain name. I am using the domain name &ldquo;jenkinsxc.com&rdquo; for my server, which was purchased from GoDaddy.</p>
+
+<p>At this point, you may be questioning yourself as to why we are installing NodeJS and MongoDB, as they are not Jenkins dependencies. The reason is that our app is a NodeJS/Mongodb app and we will be configuring Jenkins to run the test specs for our app from the Jenkins server EC2 instance and not from the app EC2 instance. Note that as an alternative to installing NodeJS and MongoDB directly, you can install them as plugins via the Jenkins pluggin manager.</p>
+
+<h2 id="installing-jenkins">Installing Jenkins</h2>
+
+<p>With the EC2 server for Jenkins now up and running its time to configure and install Jenkins. Log into your new ubuntu instance using SSH with the pem key that you got when you created your EC2 instance. My key is called &ldquo;jenkinsKey.pem&rdquo;.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ssh -i jenkinsKey.pem ubuntu@13.210.198.64</code></pre></div>
+
+<p>If you copy and paste, don&rsquo;t forget to use the IP address that came with your installation and not mine.</p>
+
+<p>We will be following the installation procedure for Jenkins from Digital Ocean:</p>
+
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-16-04" target="_blank">https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-16-04</a></p>
+
+<p>Missing from these instructions is the fact that Jenkins requires Java as a dependency. Install an open source version of Java from the terminal before you install Jenkins with:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo apt install openjdk-8-jdk</code></pre></div>
+
+<p>With Java installed, we can now go ahead and install Jenkins. From your terminal:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+
+$ echo deb https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list</code></pre></div>
+
+<p>Then update and install Jenkins with:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo apt-get update
+
+$ sudo apt-get install jenkins</code></pre></div>
+
+<p>Jenkins does not start automatically after installation. Start it with the command:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo systemctl start jenkins</code></pre></div>
+
+<p>Open the browser and navigate to the url you chose for your server. If all went well, you should see the Jenkins server opening screen requesting you enter an administrator password.</p>
+
+<p><a target="_blank" href="/media/jenkins1.png"><img src="/media/jenkins1.png" class="zoom" /></a></p>
+
+<p>The administrator password is stored in a folder on the EC2 Jenkins server instance. Print this out to your terminal screen with the command:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword</code></pre></div>
+
+<p>Then enter it in the space provided. If you enter the correct password, you will be taken to a screen which asks you for your choice of plugins. Select the install suggested plugins.</p>
+
+<p><a target="_blank" href="/media/jenkins2.png"><img src="/media/jenkins2.png" class="zoom" /></a></p>
+
+<p>You will then be taken to a screen showing the progress of installation of these plugins.</p>
+
+<p><a target="_blank" href="/media/jenkins3.png"><img src="/media/jenkins3.png" class="zoom" /></a></p>
+
+<p>When the plugins installation is completed, you will be prompted to enter an admin user account with password. Enter a user of your choice and store the details somewhere safe.</p>
+
+<p><a target="_blank" href="/media/jenkins5.png"><img src="/media/jenkins5.png" class="zoom" /></a></p>
+
+<p>Click the <strong>Save and Continue</strong> and in the following screen click the <strong>Save and Finish</strong> button.</p>
+
+<p><a target="_blank" href="/media/jenkins6.png"><img src="/media/jenkins6.png" class="zoom" /></a></p>
+
+<p>Click the start using jenkins button in the next screen.</p>
+
+<p><a target="_blank" href="/media/jenkins7.png"><img src="/media/jenkins7.png" class="zoom" /></a></p>
+
+<p>Jenkins is now setup and ready to manage your applications. Jenkins is capable of managing multiple applications each running on different servers. The terminology Jenkins uses for managing these applications is a little confusing as under the menu you have jobs, views and items. We will not speculate as to the reasoning behind this. Instead create a new job for your Jenkins server by clicking on the <strong>New Item</strong> link in the list on the left hand side.</p>
+
+<p><a target="_blank" href="/media/jenkins8.png"><img src="/media/jenkins8.png" class="zoom" /></a></p>
+
+<p>In the space provided for the item name, enter &ldquo;node-mongo-demo&rdquo;, select <strong>Freestyle project</strong></p>
+
+<p><a target="_blank" href="/media/jenkins9.png"><img src="/media/jenkins9.png" class="zoom" /></a></p>
+
+<p>Click <strong>OK</strong> to proceed to the configuration of this item. You will then be taken to a screen that lets you configure how Jenkins will manage this item. There are tabs across the top for this purpose. Under the <strong>General</strong> tab, fill out the GitHub project url. You can also fill out the description if so desired.</p>
+
+<p><a target="_blank" href="/media/jenkins11.png"><img src="/media/jenkins11.png" class="zoom" /></a></p>
+
+<p>Then click the <strong>Source Code Management</strong> tab. Click on the <strong>Git</strong> radio button and enter the github clone address of the application. Don&rsquo;t forget to include the &ldquo;.git&rdquo; on the end, otherwise Jenkins will not be able to locate your code.</p>
+
+<p><a target="_blank" href="/media/jenkins12.png"><img src="/media/jenkins12.png" class="zoom" /></a></p>
+
+<p>Click on the <strong>Build Triggers</strong> tab and select the radio button <strong>Git-Hub hook trigger for GIT Scm polling</strong>.</p>
+
+<p><a target="_blank" href="/media/jenkins13.png"><img src="/media/jenkins13.png" class="zoom" /></a></p>
+
+<p>Now we need to get Github to trigger the Jenkins server. Open a new browser window and navigate to the respository that you saved the node-mongo-demo app in. Signin to Github and click on the settings icon. Under the <strong>Webhooks</strong> tab, enter your Jenkins server domain name appended by &ldquo;github-webhook&rdquo; in the <strong>Payload Url</strong> text field.</p>
+
+<p><a target="_blank" href="/media/jenkins14.png"><img src="/media/jenkins14.png" class="zoom" /></a></p>
+
+<p>Github will now trigger the Jenkins server everytime new code is pushed up from the desktop.</p>
+
+<p>We now need to instruct Jenkins what to do when it receives these triggers. What we are going to do is run a series of tests for our application when a trigger is received. These tests are described in the <strong>test</strong> folder in the <strong>user.spec.js</strong> file and were written using Mocha/Chai. The code contained in this file is:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;supertest&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../app&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../models/user&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">expect</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;chai&#39;</span><span class="p">).</span><span class="nx">expect</span><span class="p">;</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;GET /&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;respond with hello world&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">request</span><span class="p">(</span><span class="nx">app</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">).</span><span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;Hello world&#39;</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;POST / addname &#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;clean database&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">User</span><span class="p">.</span><span class="nx">remove</span><span class="p">({}).</span><span class="nx">exec</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="nx">done</span><span class="p">();</span> <span class="p">});</span>
+  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;can add a name&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">request</span><span class="p">(</span><span class="nx">app</span><span class="p">).</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/addname&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">send</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;mark&#39;</span><span class="p">}).</span><span class="nx">end</span><span class="p">((</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">text</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;mark&#39;</span><span class="p">);</span>
+        <span class="nx">User</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;mark&#39;</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;mark&#39;</span><span class="p">);</span>
+          <span class="nx">done</span><span class="p">();</span>
+        <span class="p">});</span>
+      <span class="p">})</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;GET / names&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">myNames</span> <span class="o">=</span> <span class="p">[{</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;mark&#39;</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;john&#39;</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;neil&#39;</span>
+    <span class="p">}];</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;clean database&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">User</span><span class="p">.</span><span class="nx">remove</span><span class="p">({}).</span><span class="nx">exec</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="nx">done</span><span class="p">();</span> <span class="p">});</span>
+  <span class="p">});</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;seed users&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">User</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">myNames</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="nx">done</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;can get all names&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">request</span><span class="p">(</span><span class="nx">app</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/names&#39;</span><span class="p">).</span><span class="nx">end</span><span class="p">((</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+      <span class="p">};</span>
+      <span class="kd">var</span> <span class="nx">names</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">name</span> <span class="p">}));</span>
+      <span class="nx">names</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">user</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">found</span> <span class="o">=</span> <span class="nx">myNames</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">));</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">found</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+      <span class="p">});</span>
+      <span class="nx">done</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>You get Jenkins to run this test file by giving it the path to a shell script which it can execute. The script file we are going to be using is located under the <strong>script</strong> folder in the application and is called &ldquo;test&rdquo;:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nb">echo</span> <span class="s2">&#34;Running test&#34;</span>
+
+<span class="nb">export</span> <span class="nv">PORT</span><span class="o">=</span><span class="m">3000</span>
+
+./node_modules/.bin/mocha ./test/user.spec.js --exit</code></pre></div>
+
+<p>Let&rsquo;s briefly look at what it does. The first line of this code indicates it is to executed as a script. The second line prints &ldquo;Running test&rdquo; to the terminal screen. You may have several scripts and you want to be able to know which script is excuting. The third line exports the port number 3000 as an environment variable. This step is necessary otherwise the app would run on port 8080, the same port that Jenkins is using and the script would terminate. The last line excutes Mocha to run the tests. This script must be of type excutable. In your desktop in the script folder, open a terminal and ensure that this is so with the command:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ chmod +x test</code></pre></div>
+
+<p>Moving back now to the configuration of Jenkins for our application, click on the <strong>Build</strong> tab, then in <strong>Add build step</strong> select the <strong>Execute shell</strong> option.</p>
+
+<p><a target="_blank" href="/media/jenkins15.png"><img src="/media/jenkins15.png" class="zoom" /></a></p>
+
+<p>Within the Command text field, enter the following:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">npm install
+./scripts/test</code></pre></div>
+
+<p><a target="_blank" href="/media/jenkins16.png"><img src="/media/jenkins16.png" class="zoom" /></a></p>
+
+<p>Jenkins will pull your code into a working folder and execute the shell command in this field from the root of your app folder.</p>
+
+<p>We have now completed the configuration for the Integration Step of Jenkins. Click the <strong>Save</strong> button and you will be taken to the views window of Jenkins.</p>
+
+<p>Let&rsquo;s test our configuration to make sure everything is configured correctly. Back on your desktop, change the version number in the package.json file of your project. Commit and push the code to Github. Then after a minute or two, under the <strong>Build History</strong> of the views window for your app on the Jenkins Server, you will notice an itemised build number with flashing blue icon.</p>
+
+<p><a target="_blank" href="/media/jenkins17.png"><img src="/media/jenkins17.png" class="zoom" /></a></p>
+
+<p>This indicates that the trigger from Github has been received and Jenkins has now pulled in your code from Github to it&rsquo;s working directory and started executing the script that we gave it. Click on the itemised number and select the Console Output.</p>
+
+<p><a target="_blank" href="/media/jenkins18.png"><img src="/media/jenkins18.png" class="zoom" /></a></p>
+
+<p>This displays the console output from the script files and the Mocha test. This is very usefull when setting up Jenkins as it indicates any errors that might have occurred in its configuration. You will find it usually takes several attempts before eveything is set up correctly.</p>
+
+<p><a target="_blank" href="/media/jenkins18.png"><img src="/media/jenkins19.png" class="zoom" /></a>
+<a target="_blank" href="/media/jenkins18.png"><img src="/media/jenkins20.png" class="zoom" /></a></p>
+
+<p>If the tests pass the itemised build number will remain blue. If not it will change to red. This completes the second part in the AWS series of posts. In part 3 we will move on to the Continuous Deployment step of Jenkins.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>The procedure described here is based on that of Moshe Ezderman:</p>
+
+<p><a href="https://medium.com/@mosheezderman/how-to-set-up-ci-cd-pipeline-for-a-node-js-app-with-jenkins-c51581cc783c" target="_blank">https://medium.com/@mosheezderman/how-to-set-up-ci-cd-pipeline-for-a-node-js-app-with-jenkins-c51581cc783c</a></p>
+        </div>
+        
+      </div>
+      </article>
+    </div>
+
+  <div class="row">
+    <div class="return">
+        <a class="btn" href="javascript:void(0);" onclick="goBack()">
+          <span class="btn__icon"><i class="fa fa-chevron-circle-left"></i></span>
+          BACK
+        </a>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+  function goBack() {
+      window.history.back();
+  }
+</script>
+
+<footer class="footer">
+  <div class="footer__wrap">
+    
+    <p class="footer__link-wrap">
+      A <a class="footer__link" href="https://gohugo.io/">Hugo static site</a> built with the
+      <a class="footer__link" href="https://github.com/snapdragonxc/galerie">Galerie theme</a>.
+    </p>
+    
+    <p class="footer__text">&copy; <a href="https://github.com/snapdragonxc">Snapdragonxc</a> 2018</p>
+  </div>
+</footer>
+
+</body>
+</html>
+

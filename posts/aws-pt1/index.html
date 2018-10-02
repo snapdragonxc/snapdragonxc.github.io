@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<title>AWS Part 1 | CODING BLOG</title>
+
+
+<link rel="stylesheet" href="/css/style.css"/><link rel='stylesheet' href='https://www.example.com/css/custom.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="\/\/matomo.example.com\/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+  <img src="//matomo.example.com/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" />
+</noscript>
+
+
+
+<div class="row">
+    <header class="header">
+  <div class="header__wrap">
+    <div class="row">
+    <div class="header__left xs-col-span-12 sm-col-span-6">
+      <a class="header__title-link" href="https://www.example.com"><h1 class="header__title">CODING BLOG</h1></a>
+    </div>
+
+    <nav class="header__right xs-col-span-12 sm-col-span-6"><a class="header__social-link" aria-label="author"
+          href='/about'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M21,21V17.5 c0-2.76-4-5-9-5s-9,2.24-9,5v3.5"/>
+    <path d="M12,1
+    A
+    3.5, 3.5,
+    0,
+    0,
+    1,
+    12.0, 12.0,
+    M12,1
+    A
+    3.5, 3.5,
+    0,
+    0,
+    0,
+    12.0, 12.0,
+    "/>
+    
+  </svg>
+</a><a class="header__social-link" aria-label="email"
+          href='mailto:snapdragonxc@gmail.com'target='_blank'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg>
+</a><a class="header__social-link" aria-label="github"
+          href='https://github.com/snapdragonxc'target='_blank'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg>
+</a></nav>
+    <div class="clear-fix"></div>
+    </div>
+  </div>
+</header>
+
+</div>
+
+<div class="wrapper wrapper--small">
+  <div class="row">
+    <article class="single">
+      <div class="single__wrap">
+        <div class="single-article__heading single-article__heading--single">
+          <h2 class="single-article__title">
+            <span class="single-article__title--main">AWS Part 1</span>
+            <span class="single-article__title--sub">Installing a Node app on EC2</span>
+          </h2>
+          <h4 class="single-article__date">September 24, 2018</h4>
+        </div>
+
+        <div class="single__content">
+          <p>Hosting a webpage online can seem like a daunting task when first starting, made even more confusing by the many different products available. This post decribes the steps required for hosting a webpage on AWS.</p>
+
+<p></p>
+
+<p>We will be using EC2 from AWS. EC2 is an abbreviation for &ldquo;Elastic Cloud Computer&rdquo;. It can be thought of as a computer that is accessible over the internet. AWS have an incredibly long list of EC2s available, modelled on both new and old versions of Windows and Linux. You access these through the management console of your AWS account. The process of allocating the hardware and an operating system for each EC2 is referred to by AWS as &ldquo;creating an instance&rdquo; and the EC2s are referred to as &ldquo;EC2 instances&rdquo;.</p>
+
+<p>An EC2 instance can be conveniently configured as a server to host an app. Here we will create and configure an EC2 instance as a server and install a Nodejs/MongodB/ExpressJS app onto it. The procedure is very similar to that which you would do if you were building a server on a desktop computer. The difference being that with an EC2 instance, everything is accessed remotely using SSH (SSH is another abbreviation , this time meaning Secure SHell).</p>
+
+<h2 id="create-an-aws-ec2-ubuntu-16-instance">Create an AWS EC2 Ubuntu 16 instance:</h2>
+
+<p>Log into your AWS account. From the management console, select Services then under the <strong>Compute</strong> section, select <strong>EC2</strong>.</p>
+
+<p><a target="_blank" href="/media/aws1.png"><img src="/media/aws1.png" class="zoom" /></a></p>
+
+<p>This will take you to the EC2 dashboard. Find the <strong>Launch Instance</strong> button on the dashboard and click it.</p>
+
+<p><a target="_blank" href="/media/aws2.png"><img src="/media/aws2.png" class="zoom" /></a></p>
+
+<p>This will present you with a form showing the list of available operating systems.</p>
+
+<p><a target="_blank" href="/media/aws3.png"><img src="/media/aws3.png" class="zoom" /></a></p>
+
+<p>Select an operating system for your EC2 instance. We will be using <strong>Ubuntu Server 16.04LTS</strong>, which is at the bottom of the list. I would suggest if possible that you choose a system that mirrors your desktop development machine. Note that we are not using the latest LTS version of Ubuntu, which is 18. At the time of writing, I was not able to install curl and mongodb simultaneously on Ubuntu 18LTS, which is why we are not using this system.</p>
+
+<p><a target="_blank" href="/media/aws4.png"><img src="/media/aws4.png" class="zoom" /></a></p>
+
+<p>With the operating system selected, we need to open the HTTP and HTTPS ports to allow our server to be seen by the outside world. Jump through Steps two to five, accepting the default values, until you get to Step 6, which is the step for opening ports. From the options, add HTTP and HTTPS. This opens Port 80 and 443 respectively. The HTTPS port is for secure web traffic, ie. it encrypts the network traffic. You won&rsquo;t need it here but we will be using it in the future. Note also that Port 22, which is for SSH is already open. We will be using this port to access the EC2 instance.</p>
+
+<p><a target="_blank" href="/media/aws11.png"><img src="/media/aws11.png" class="zoom" /></a></p>
+
+<p>Move forward to Step 7, the final step, and click the <strong>Launch</strong> button.</p>
+
+<p><a target="_blank" href="/media/aws12.png"><img src="/media/aws12.png" class="zoom" /></a></p>
+
+<p>This will open a modal window from which you can create and download the SSH keys to access your instance. I gave my keys the name <strong>appKey.pem</strong>. Save these keys somewhere safe on your desktop computer, because you will need them to access the EC2 instance. Then select the Launch Instances button from the same modal window.</p>
+
+<p><a target="_blank" href="/media/aws13.png"><img src="/media/aws13.png" class="zoom" /></a></p>
+
+<p>After a few minutes, your EC2 instance will be listed in the instances under the Instances tag on the EC2 dashboard. Give the instance a name and note down your public IPv4 address. At this point we have created an EC2 instance emulating a Ubuntu 16.04 computer. Later on we will assign a domain name to this IP address.</p>
+
+<p>We have also downloaded the SSH key for our instance and stored it safely on our desktop. In the next section we will use this key to access the EC2 instance.</p>
+
+<h2 id="accessing-the-ec2-instance-from-your-desktop">Accessing the EC2 instance from your desktop.</h2>
+
+<p>Secure Shell is a convenient way of accessing your remote EC2 instance. We will be using it with a pem file. A pem file, is a file containing one big hunk of text, without line breaks or any formatting. It acts as a key. You send this file across the internet to your EC2 instance and it opens the door.</p>
+
+<p>Before we can use the pem key we have to first give it the correct permissions. Open a terminal in the folder containing your downloaded pem file and set the correct permission:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ chmod 400 appKey.pem</code></pre></div>
+
+<p>Then to access our EC2 instance, enter the following in the terminal:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ ssh -i appKey.pem ubuntu@13.210.198.64</code></pre></div>
+
+<p>substituting 13.210.198.64 with your own IP address. If everything works you will see a command prompt with ubuntu in front of it, and if so you are now inside the EC2 instance.</p>
+
+<h2 id="installing-nodejs">Installing NodeJS</h2>
+
+<p>Now that we are in, update and upgrade the instance</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo apt-get update
+$ sudo apt-get upgrade</code></pre></div>
+
+<p>With this done we can move on to installing nodejs. We will be duplicating our desktop environment and installing a LTS (Long Term Support) version of node. Although not the most up to date, you can greatly reduce the chances of running into syntax errors or other nasties due to versioning issues among packages or for that matter, your own code. The proceedure to install it is on the nodejs official site:</p>
+
+<p><a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions" target="_blank">https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions</a></p>
+
+<p>Open a command terminal and enter the following:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+$ sudo apt-get install -y nodejs
+$ sudo apt-get install -y build-essential</code></pre></div>
+
+<p>Then from the same terminal, check the node version:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ node -v
+$ v8.12.0</code></pre></div>
+
+<p>and also the npm version:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ npm -v
+$ 6.4.1</code></pre></div>
+
+<h2 id="install-mongodb">Install Mongodb</h2>
+
+<p>As our app uses mongodb as a database, we will be installing it alongside node. The method we will be using is copied directly from the mongodb website:</p>
+
+<p><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/" target="_blank">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/</a></p>
+
+<p>Mongodb make a point of emphasizing not to use the Ubuntu packaged version. With this in mind, we will not use it. From the terminal:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+echo &#34;deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse&#34; | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list</code></pre></div>
+
+<p>Reload the package manager with the updated details and install mongodb:
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">sudo apt-get update
+sudo apt-get install -y mongodb-org</code></pre></div></p>
+
+<p>Start up mongodb</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo service mongod start</code></pre></div>
+
+<h2 id="install-nginx-as-a-reverse-proxy">Install Nginx as a reverse proxy.</h2>
+
+<p>The app we are going to install uses a nodejs server. It is standard practice to run your nodejs server behind a reverse proxy server. A reverse proxy server listens on one port and redirects any network traffic on this port to another. In this case we will redirect from port 80 to the port running our app, which is port 8080.</p>
+
+<p>The reverse proxy server we will be using is Nginx. The procedure for installation is relatively easy, especially compared to mongodb and node. You only need to enter the following in the terminal:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo apt-get install nginx -y</code></pre></div>
+
+<p>Unlike Mongodb, Nginx is launched automatically when it is installed. To confirm you have installed it correctly, open your browser and enter the IP address of your EC2 instance. If everything went well, you will see a welcome to nginx screen. Note that it is currently directing all network traffic on port 80 to this screen as we have not yet configured it to redirect.</p>
+
+<p><a target="_blank" href="/media/aws14.png"><img src="/media/aws14.png" class="zoom" /></a></p>
+
+<h2 id="setting-up-the-domain-name-servers">Setting up the Domain name servers.</h2>
+
+<p>Now it&rsquo;s time to configure Nginx as a reverse proxy. But before we do that we will get a domain name for convenience.</p>
+
+<p>There are many websites selling domain names. I am using the domain name <strong>testxc100.org</strong> which I bought from GoDaddy.</p>
+
+<p>Currently this domain name is not pointing to the AWS IP address of our EC2 instance. We need to configure AWS Domain name servers to do this. You can use the default domain name servers that come with GoDaddy but I am going to use those from AWS.</p>
+
+<p>The AWS name servers are located under the <strong>Route 53</strong> service under your AWS management console. If you are wondering why Route 53, it is a reference to Port 53, which is the port that is reserved for all domain name servers.</p>
+
+<p>Click on <strong>Route 53</strong> then on the <strong>Create Hosted Zone</strong> button in the Hosted Zones.</p>
+
+<p><a target="_blank" href="/media/aws16.png"><img src="/media/aws16.png" class="zoom" /></a></p>
+
+<p>Create a new Host Service with your domain name that you bought.</p>
+
+<p><a target="_blank" href="/media/aws17.png"><img src="/media/aws17.png" class="zoom" /></a></p>
+
+<p>Click the <strong>Creat Record Set</strong> and add an A-name and CNAME record. The A-name links the IP address of the EC2 instance directly to your domain name, whilst the CNAME is a reference name that links the www.textxc100.org domain name with testxc100.org.</p>
+
+<p><a target="_blank" href="/media/aws18.png"><img src="/media/aws18.png" class="zoom" /></a></p>
+
+<p><a target="_blank" href="/media/aws19.png"><img src="/media/aws19.png" class="zoom" /></a></p>
+
+<p>You have now linked your domain name to the AWS Domain Name Servers. There are four name servers. These are listed in the record set for your domain name under the Hosted Zones as type <strong>NS</strong>.</p>
+
+<p><a target="_blank" href="/media/aws20.png"><img src="/media/aws20.png" class="zoom" /></a></p>
+
+<p>We now need to let GoDaddy know that we are using AWS name servers. Copy the four name server domains from the Host Service to the Godaddy <strong>Custom Name Servers</strong> window.</p>
+
+<p><a target="_blank" href="/media/aws21.png"><img src="/media/aws21.png" class="zoom" /></a></p>
+
+<p>To confirm that everything went well, enter your domain name in the browser and you should be taken to the Nginx welcome screen again, fingers crossed.</p>
+
+<p>With a domain name setup, we now move on to configuring Nginx as a reverse proxy:</p>
+
+<p>Open the Nginx configuration file using nano:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo nano /etc/nginx/sites-available/default</code></pre></div>
+
+<p>and paste the following (with your own domain name substituted) at the end of the file.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">server {
+    listen 80;
+    server_name testxc100.org www.testxc100.org;
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &#39;upgrade&#39;;
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_redirect off;
+     }
+}</code></pre></div>
+
+<p>In order for these settings to have effect, you will need to restart Nginx:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo systemctl reload nginx</code></pre></div>
+
+<p>At this point we have created a fully functional Nginx server, listening on port 80 and redirecting to port 8080. MongoDB and NodeJS have been installed and everything is now setup and ready to run your application.</p>
+
+<h2 id="description-of-the-application">Description of the Application</h2>
+
+<p>The application that we will be installing is a nodejs/expressjs/mongodb api that stores and retrieves names from a mongodb database.</p>
+
+<p><a target="_blank" href="/media/aws23.png"><img src="/media/aws23.png" class="zoom" /></a></p>
+
+<p>Note that there are two scripts with the app. You ownly need these if you plan to use Jenkins CI/CD to test and deploy it. They are explained in AWS Part 2 and 3.</p>
+
+<p>The actual app that we will be installing is the app.js file :</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;express&#34;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;body-parser&#39;</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="nx">extended</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}));</span>
+
+<span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;mongoose&#34;</span><span class="p">);</span>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">&#34;mongodb://localhost:27017/node-demo&#34;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./models/user&#39;</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;Hello world again&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&#34;/addname&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+  <span class="nx">user</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;Error saving name&#34;</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/names&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">User</span><span class="p">.</span><span class="nx">find</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;Error getting names&#34;</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">})</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">8080</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">app</span><span class="p">;</span>
+</code></pre></div>
+
+<p>There are three ExpressJS routes. &ldquo;get/&rdquo;, returns &ldquo;Hello world&rdquo;. The other two routes are &ldquo;post/addname&rdquo;, which adds a name into the database and &ldquo;get/names&rdquo;, which retrieves all the names from the database.</p>
+
+<p>The full code of the app is available for forking/cloning from my github account, or you can use some code of your own:</p>
+
+<p><a href="https://github.com/snapdragonxc/node-mongo-demo.git" target="_blank">https://github.com/snapdragonxc/node-mongo-demo.git</a></p>
+
+<h2 id="installing-the-app">Installing the App</h2>
+
+<p>Clone the repository into your EC2 instance:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ git clone https://github.com/snapdragonxc/node-mongo-demo.git
+$ cd node-mongo-demo
+$ npm install</code></pre></div>
+
+<p>Run the node app from the node-mongo-demo directory with the command:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo node app.js</code></pre></div>
+
+<p>If everything installed correctly, when you enter your domain name in the browser you should see &ldquo;Hello world&rdquo; displayed on the screen.</p>
+
+<p><a target="_blank" href="/media/aws15.png"><img src="/media/aws15.png" class="zoom" /></a></p>
+
+<h2 id="installing-a-process-manager">Installing a Process Manager</h2>
+
+<p>You will need to stop and restart the app during pulls of new code from Github. For convenience, this is most easily achieved using a process manager. The process manager we will be using is what everyone else seems to use, i.e. PM2. To install PM2, from the terminal:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ sudo npm install pm2 -g</code></pre></div>
+
+<p>Then start the Node app using PM2:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ cd node-mongo-demo
+$ pm2 start app.js</code></pre></div>
+
+<p>With this step completed, you should now have a Nodejs app running on your EC2 server behind a Nginx proxy. In a later post I will deal with installing a certificate to enable HTTPS and adding access rights to the database but for now move on to part 2, where we will be building a second EC2 instance for Jenkins CI/CD.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>The procedure described here was based on that given by Keith Weaver, who installed a ReactJS app on an EC2 instance:</p>
+
+<p><a href="https://medium.com/@Keithweaver_/setting-up-mern-stack-on-aws-ec2-6dc599be4737" target="_blank">https://medium.com/@Keithweaver_/setting-up-mern-stack-on-aws-ec2-6dc599be4737</a></p>
+        </div>
+        
+      </div>
+      </article>
+    </div>
+
+  <div class="row">
+    <div class="return">
+        <a class="btn" href="javascript:void(0);" onclick="goBack()">
+          <span class="btn__icon"><i class="fa fa-chevron-circle-left"></i></span>
+          BACK
+        </a>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+  function goBack() {
+      window.history.back();
+  }
+</script>
+
+<footer class="footer">
+  <div class="footer__wrap">
+    
+    <p class="footer__link-wrap">
+      A <a class="footer__link" href="https://gohugo.io/">Hugo static site</a> built with the
+      <a class="footer__link" href="https://github.com/snapdragonxc/galerie">Galerie theme</a>.
+    </p>
+    
+    <p class="footer__text">&copy; <a href="https://github.com/snapdragonxc">Snapdragonxc</a> 2018</p>
+  </div>
+</footer>
+
+</body>
+</html>
+

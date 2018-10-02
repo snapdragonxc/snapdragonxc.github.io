@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<title>SPIES | CODING BLOG</title>
+
+
+<link rel="stylesheet" href="/css/style.css"/><link rel='stylesheet' href='https://www.example.com/css/custom.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="\/\/matomo.example.com\/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+  <img src="//matomo.example.com/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" />
+</noscript>
+
+
+
+<div class="row">
+    <header class="header">
+  <div class="header__wrap">
+    <div class="row">
+    <div class="header__left xs-col-span-12 sm-col-span-6">
+      <a class="header__title-link" href="https://www.example.com"><h1 class="header__title">CODING BLOG</h1></a>
+    </div>
+
+    <nav class="header__right xs-col-span-12 sm-col-span-6"><a class="header__social-link" aria-label="author"
+          href='/about'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M21,21V17.5 c0-2.76-4-5-9-5s-9,2.24-9,5v3.5"/>
+    <path d="M12,1
+    A
+    3.5, 3.5,
+    0,
+    0,
+    1,
+    12.0, 12.0,
+    M12,1
+    A
+    3.5, 3.5,
+    0,
+    0,
+    0,
+    12.0, 12.0,
+    "/>
+    
+  </svg>
+</a><a class="header__social-link" aria-label="email"
+          href='mailto:snapdragonxc@gmail.com'target='_blank'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg>
+</a><a class="header__social-link" aria-label="github"
+          href='https://github.com/snapdragonxc'target='_blank'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg>
+</a></nav>
+    <div class="clear-fix"></div>
+    </div>
+  </div>
+</header>
+
+</div>
+
+<div class="wrapper wrapper--small">
+  <div class="row">
+    <article class="single">
+      <div class="single__wrap">
+        <div class="single-article__heading single-article__heading--single">
+          <h2 class="single-article__title">
+            <span class="single-article__title--main">SPIES</span>
+            <span class="single-article__title--sub">Creating a spie for a test runner</span>
+          </h2>
+          <h4 class="single-article__date">September 12, 2018</h4>
+        </div>
+
+        <div class="single__content">
+          <p>Spies in Testing frameworks, such as Jasmine and Jest, determine whether or not a Unit under test has called a particular member function or not. This post looks at how spies work by creating a working spy function.</p>
+
+<p></p>
+
+<p>Lets begin by creating the Unit we want to spy on. This will be a class called Person, with one variable, &lsquo;age&rsquo;, which is initialised when the object is created, and a &lsquo;howOld&rsquo; method. The howOld method returns the age of the person.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Person.js
+</span><span class="c1"></span><span class="k">class</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
+  <span class="p">}</span>
+  <span class="nx">holdOld</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Then we will require this into a test.spec.js file, create an object called &lsquo;henry&rsquo; and call the howOld method.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// test.spec.js
+</span><span class="c1"></span><span class="k">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./Person&#39;</span><span class="p">);</span>
+
+<span class="k">const</span> <span class="nx">henry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="mi">22</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;How old are you?&#39;</span><span class="p">,</span> <span class="nx">henry</span><span class="p">.</span><span class="nx">howOld</span><span class="p">());</span>
+</code></pre></div>
+
+<p>The console output when we run this code is:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">How old are you? 22</code></pre></div>
+
+<p>Suppose we now want to spy on the &lsquo;howOld&rsquo; method to see how many times this method was called. What we can do to achieve this is to replace the &lsquo;howOld&rsquo; method with a function that performs identically except that it also notifies us when it is called. We do this with a decorator function:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">decorator</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Spy detected a method was called&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>As you can see, the decorator returns a function. This function is the replacement for the method we are decorating, which is the argument &lsquo;fn&rsquo;. What the replacement does is console logs out &lsquo;Spy detected a method was called&rsquo; before executing the original method, &lsquo;fn&rsquo;, and returning the result of this method as would normally occur.</p>
+
+<p>Let&rsquo;s now apply this decorator to our Person object. To do this we will use a function called &lsquo;spy&rsquo;, which takes in the object and the name of the method we want to replace and calls the decorator to return the modified method.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">spy</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">obj</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">decorator</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">name</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>We place both these functions in a file called &lsquo;spy.js&rsquo;</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// spy.js
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">decorator</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Spy detected a method was called&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">spy</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">obj</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">decorator</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">name</span><span class="p">]);</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">spy</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Back in the test.spec.js file we apply it to the &lsquo;henry&rsquo; object as follows:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./Person&#39;</span><span class="p">);</span>
+<span class="k">const</span> <span class="nx">spy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./spy.js&#39;</span><span class="p">);</span>
+
+<span class="k">const</span> <span class="nx">henry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="mi">22</span><span class="p">);</span>
+<span class="nx">spy</span><span class="p">(</span><span class="nx">henry</span><span class="p">,</span> <span class="s1">&#39;howOld&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;How old are you?&#39;</span><span class="p">,</span> <span class="nx">henry</span><span class="p">.</span><span class="nx">howOld</span><span class="p">());</span>
+</code></pre></div>
+
+<p>Now when we call the howOld method, the following will be consoled out:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">Spy detected that a method was called
+How old are you? 22</code></pre></div>
+
+<p>So that is how spies work.</p>
+
+<p>As it stands though, the code is not very informative. In addition, we don&rsquo;t want to see the Spy&rsquo;s console log everytime we call the method. We modify our spy as follows by including a third function that reports on the number of times the method was called and also the name of the method called.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">method</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="kd">function</span> <span class="nx">report</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Spy detected that </span><span class="err">\</span><span class="sb">&#39;</span><span class="si">${</span><span class="nx">method</span><span class="si">}</span><span class="err">\</span><span class="sb">&#39; was called </span><span class="si">${</span><span class="nx">count</span><span class="si">}</span><span class="sb"> times.`</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">decorator</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">spy</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">method</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="nx">obj</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">decorator</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">name</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">spy</span><span class="p">,</span> <span class="nx">report</span> <span class="p">};</span>
+</code></pre></div>
+
+<p>Back in our test.spec.js we include the new modified code, with &lsquo;report()&rsquo; now called at the end:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./Person&#39;</span><span class="p">);</span>
+<span class="k">const</span> <span class="p">{</span> <span class="nx">spy</span><span class="p">,</span> <span class="nx">report</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./spy&#39;</span><span class="p">);</span>
+
+<span class="k">const</span> <span class="nx">henry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="mi">22</span><span class="p">);</span>
+<span class="nx">spy</span><span class="p">(</span><span class="nx">henry</span><span class="p">,</span> <span class="s1">&#39;howOld&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;How old are you?&#39;</span> <span class="p">,</span> <span class="nx">henry</span><span class="p">.</span><span class="nx">howOld</span><span class="p">());</span>
+<span class="nx">report</span><span class="p">();</span>
+</code></pre></div>
+
+<p>The terminal output is now far more pleasing:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">How old are you? 22
+Spy detected that &#39;howOld&#39; was called 1 times.</code></pre></div>
+
+<p>The actual code for spies in Jasmine or Jest is a little bit more complex than this because they have the capability of spying on multiple objects and methods. The principles behind it remains the same though.</p>
+        </div>
+        
+      </div>
+      </article>
+    </div>
+
+  <div class="row">
+    <div class="return">
+        <a class="btn" href="javascript:void(0);" onclick="goBack()">
+          <span class="btn__icon"><i class="fa fa-chevron-circle-left"></i></span>
+          BACK
+        </a>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+  function goBack() {
+      window.history.back();
+  }
+</script>
+
+<footer class="footer">
+  <div class="footer__wrap">
+    
+    <p class="footer__link-wrap">
+      A <a class="footer__link" href="https://gohugo.io/">Hugo static site</a> built with the
+      <a class="footer__link" href="https://github.com/snapdragonxc/galerie">Galerie theme</a>.
+    </p>
+    
+    <p class="footer__text">&copy; <a href="https://github.com/snapdragonxc">Snapdragonxc</a> 2018</p>
+  </div>
+</footer>
+
+</body>
+</html>
+

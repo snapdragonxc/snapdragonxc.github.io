@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>Tags | CODING BLOG</title>
+<title>Redux | CODING BLOG</title>
 
 
 <link rel="stylesheet" href="/css/style.css"/><link rel='stylesheet' href='https://www.example.com/css/custom.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -38,7 +38,8 @@
 
 
 
-<header class="header">
+<div class="row">
+    <header class="header">
   <div class="header__wrap">
     <div class="row">
     <div class="header__left xs-col-span-12 sm-col-span-6">
@@ -88,32 +89,65 @@
   </div>
 </header>
 
-
-<div class="wrapper wrapper--large">
-
-  <div class="row">
-    <div class="articles">
-      
-      
-      <div class="clear-fix"></div>
-    </div>
-  </div>
-
-  <div class="row">
-      
-  <nav class="pager">
-    <div class="pager__nav-prev">
-        
-    </div>
-
-    <div class="pager__nav-next">
-        
-    </div>
-    <div class="clear-fix"></div>
-  </nav>
-
-  </div>
 </div>
+
+<div class="wrapper wrapper--small">
+  <div class="row">
+    <article class="single">
+      <div class="single__wrap">
+        <div class="single-article__heading single-article__heading--single">
+          <h2 class="single-article__title">
+            <span class="single-article__title--main">Redux</span>
+            <span class="single-article__title--sub">When and where to use it</span>
+          </h2>
+          <h4 class="single-article__date">September 3, 2018</h4>
+        </div>
+
+        <div class="single__content">
+          <p>Redux manages the overall state of a ReactJS application with multiple components. The question is when to use it in your application and what components need to use it. This post provides two examples that help answer that question.</p>
+
+<p></p>
+
+<p>Redux is React&rsquo;s version of a Model-View-Controller. The store is the model, the reducer is the controller and the components are the views. Components subscribe to the store so that when the store updates, they receive updated properties from the store. Components also issue actions to the reducer when they want to update the store. The flow is uni-directional.</p>
+
+<p>Redux adds significant amount of code to your application so it requires careful planning beforehand. The following two examples show how it can be used to simplify code and reduce calls to the server.</p>
+
+<h2 id="shopping-cart">Shopping Cart</h2>
+
+<p>A shopping cart is widely used in Ecommerce shops. Often we want to show a cart in the Header component which is visible on every page of the application and lets the user know how many items they have in the cart. When we update the Shopping Cart from a page in the application, we would also like to update the cart in the header at the same time. This is an example of where Redux considerably simplifes the code. Both the shopping cart and the header component subscribe to the store. Then when the cart updates the store, the header will be notified of the change in store and update accordingly.</p>
+
+<p><img src="/media/redux1.png" class="withBorder"/></p>
+
+<h2 id="ecommerce-shop">Ecommerce Shop</h2>
+
+<p>Ecommerce shops display a list of products to buyers for them to select which product they would like to buy. When they select a product they are shown the details of the product they selected on another page. When the products page loads, a call is made to the server to get the products. Without Redux, we would have to make another call to the server when a product was selected.</p>
+
+<p>With Redux, both the products page and the product page subscribe to the store. When the products page loads it issues an action to Redux which puts the products returned by the server into the store. Then when a buyer selects a product this is retrieved from the store without an additional call to the server being made.</p>
+
+<p><img src="/media/redux2.png" class="withBorder"/></p>
+        </div>
+        
+      </div>
+      </article>
+    </div>
+
+  <div class="row">
+    <div class="return">
+        <a class="btn" href="javascript:void(0);" onclick="goBack()">
+          <span class="btn__icon"><i class="fa fa-chevron-circle-left"></i></span>
+          BACK
+        </a>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+  function goBack() {
+      window.history.back();
+  }
+</script>
 
 <footer class="footer">
   <div class="footer__wrap">
@@ -129,5 +163,4 @@
 
 </body>
 </html>
-
 

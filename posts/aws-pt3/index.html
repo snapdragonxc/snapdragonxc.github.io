@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<title>AWS Part 3 | CODING BLOG</title>
+
+
+<link rel="stylesheet" href="/css/style.css"/><link rel='stylesheet' href='https://www.example.com/css/custom.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="\/\/matomo.example.com\/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+  <img src="//matomo.example.com/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" />
+</noscript>
+
+
+
+<div class="row">
+    <header class="header">
+  <div class="header__wrap">
+    <div class="row">
+    <div class="header__left xs-col-span-12 sm-col-span-6">
+      <a class="header__title-link" href="https://www.example.com"><h1 class="header__title">CODING BLOG</h1></a>
+    </div>
+
+    <nav class="header__right xs-col-span-12 sm-col-span-6"><a class="header__social-link" aria-label="author"
+          href='/about'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M21,21V17.5 c0-2.76-4-5-9-5s-9,2.24-9,5v3.5"/>
+    <path d="M12,1
+    A
+    3.5, 3.5,
+    0,
+    0,
+    1,
+    12.0, 12.0,
+    M12,1
+    A
+    3.5, 3.5,
+    0,
+    0,
+    0,
+    12.0, 12.0,
+    "/>
+    
+  </svg>
+</a><a class="header__social-link" aria-label="email"
+          href='mailto:snapdragonxc@gmail.com'target='_blank'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg>
+</a><a class="header__social-link" aria-label="github"
+          href='https://github.com/snapdragonxc'target='_blank'rel='noopener'>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg>
+</a></nav>
+    <div class="clear-fix"></div>
+    </div>
+  </div>
+</header>
+
+</div>
+
+<div class="wrapper wrapper--small">
+  <div class="row">
+    <article class="single">
+      <div class="single__wrap">
+        <div class="single-article__heading single-article__heading--single">
+          <h2 class="single-article__title">
+            <span class="single-article__title--main">AWS Part 3</span>
+            <span class="single-article__title--sub">Continuous Deployment with Jenkins</span>
+          </h2>
+          <h4 class="single-article__date">September 26, 2018</h4>
+        </div>
+
+        <div class="single__content">
+          <p>Continuing on from where we left off in AWS Part 2, this post describes the Continuous Deployment step of Jenkins, which occurs if the Integration step is successfull.</p>
+
+<p></p>
+
+<p>In this post, we are going to configure Jenkins to grab the code from Github that it tested in the Integration step and install it in the EC2 server app that we built in AWS Part1. Note that Jenkins will only perform this step if the Integration was successfull. To do this we are going to get Jenkins to SSH into the server app and run a deploy script in our server app which will pull in and install the app.</p>
+
+<p>Lets start first by describing the script that we will run on the server app. If you recall in AWS Part 1, it was mentioned that the app contained a scripts folder with a deploy and test script. In AWS Part 2 we used the <strong>test</strong> script. We will now use the <strong>deploy</strong> script:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nb">echo</span> <span class="s1">&#39;pulling files from github&#39;</span>
+<span class="nb">cd</span> ./node-mongo-demo
+git pull origin master
+npm install
+pm2 restart all</code></pre></div>
+
+<p>What it does is to change from the home directory into that of the node-mongo-demo directory and pull in the code from github. It then installs this code and re-starts the app using the process manager.</p>
+
+<p>Don&rsquo;t forget to make sure you have set the permissions of the script to be an executable with the command:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ chmod +x deploy</code></pre></div>
+
+<p>With the deploy script explained, we will now move back to our Jenkins server to configure it to run this script. We want it to run after the Integration step. On the Jenkins server, return to the main menu.</p>
+
+<p><a target="_blank" href="/media/deploy1.png"><img src="/media/deploy1.png" /></a></p>
+
+<p>Select <strong>Manage Jenkins</strong> from the menu, which will bring up a window with a list of options.</p>
+
+<p><a target="_blank" href="/media/deploy2.png"><img src="/media/deploy2.png" /></a></p>
+
+<p>From these options select the <strong>Manage Plugins</strong>. In the tabs window, select <strong>Available</strong> and enter SSH in the filter. Check the <strong>Publish Over SSH</strong> check-box</p>
+
+<p><a target="_blank" href="/media/deploy4.png"><img src="/media/deploy4.png" /></a></p>
+
+<p>Then click the <strong>Install without restart</strong> button.</p>
+
+<p><a target="_blank" href="/media/deploy5.png"><img src="/media/deploy5.png" /></a></p>
+
+<p>When the installation has completed, click the <strong>Go back to the top page</strong> link at the bottom of the page. You should now be back in the main menu, with the Manage Jenkins window open.</p>
+
+<p><a target="_blank" href="/media/deploy6.png"><img src="/media/deploy6.png" /></a></p>
+
+<p>From the Manage Jenkins list of options, select the <strong>Configure System</strong> option and scroll down until you locate the <strong>Publish over SSH</strong> configuration settings.</p>
+
+<p><a target="_blank" href="/media/deploy11.png" class="withBorder"><img src="/media/deploy11.png" /></a></p>
+
+<p>To fill this form out, you will need to get the pem key for your server app. To get the pem key, go to the folder where you stored your keys and print the key to the terminal screen using:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">$ cat appKey.pem</code></pre></div>
+
+<p><a target="_blank" href="/media/deploy8.png"><img src="/media/deploy8.png" /></a></p>
+
+<p>Make sure you use the terminal window and not an editor to do this otherwise it may not be copied correctly as many text editors add formatting characters. Move back to you Jenkins SSH configuration and paste the key in the space provided. Fill out the other details as shown using your own domain name.</p>
+
+<p><a target="_blank" href="/media/deploy7.png" class="withBorder"><img src="/media/deploy7.png" /></a></p>
+
+<p>Navigate back to the Jenkins main menu and from there go back to the view window for the app which is located in the My Views &gt; All &gt; node-mongo-demo.</p>
+
+<p><a target="_blank" href="/media/deploy9.png"><img src="/media/deploy9.png" /></a></p>
+
+<p>From the menu on the left click on <strong>Configure</strong> and then click on the <strong>Build Environment</strong> tab. From within this tab window, select the <strong>Send files or execute commands over SSH after the build runs</strong> checkbox.</p>
+
+<p><a target="_blank" href="/media/deploy10.png"><img src="/media/deploy10.png" /></a></p>
+
+<p>Enter the details shown under SSH Server. For <strong>Name</strong>, use the user (ubuntu) followed by your own domain name. In the Exec command field enter the deploy command with its path as shown, including the &lsquo;.&rsquo; to force it to execute. Click on save to update the configuration.</p>
+
+<p>Your Jenkins server is now configured to not only perform an Integration but now also a deploy.</p>
+
+<p>Lets test it out. On your desktop machine, change the app get route to now return &ldquo;Hello world again&rdquo;, and also update the corresponding test in the user.spec.js file with the new ouput. Push the update to GitHub and after a few minutes open a browser window at the domain name of the server app. It should now be showing &ldquo;Hello world again&rdquo;.</p>
+        </div>
+        
+      </div>
+      </article>
+    </div>
+
+  <div class="row">
+    <div class="return">
+        <a class="btn" href="javascript:void(0);" onclick="goBack()">
+          <span class="btn__icon"><i class="fa fa-chevron-circle-left"></i></span>
+          BACK
+        </a>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+  function goBack() {
+      window.history.back();
+  }
+</script>
+
+<footer class="footer">
+  <div class="footer__wrap">
+    
+    <p class="footer__link-wrap">
+      A <a class="footer__link" href="https://gohugo.io/">Hugo static site</a> built with the
+      <a class="footer__link" href="https://github.com/snapdragonxc/galerie">Galerie theme</a>.
+    </p>
+    
+    <p class="footer__text">&copy; <a href="https://github.com/snapdragonxc">Snapdragonxc</a> 2018</p>
+  </div>
+</footer>
+
+</body>
+</html>
+

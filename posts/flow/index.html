@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>About | CODING BLOG</title>
+<title>Flow | CODING BLOG</title>
 
 
 <link rel="stylesheet" href="/css/style.css"/><link rel='stylesheet' href='https://www.example.com/css/custom.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -97,42 +97,53 @@
       <div class="single__wrap">
         <div class="single-article__heading single-article__heading--single">
           <h2 class="single-article__title">
-            <span class="single-article__title--main">About</span>
-            <span class="single-article__title--sub">A blog of helpfull tips</span>
+            <span class="single-article__title--main">Flow</span>
+            <span class="single-article__title--sub">Type template for packages</span>
           </h2>
-          <h4 class="single-article__date">December 22, 2017</h4>
+          <h4 class="single-article__date">September 2, 2018</h4>
         </div>
 
         <div class="single__content">
-          <p>A lot of engineers post their problems and solutions on-line through forums or blogs. I have found this shared knowledge extremely helpfull. The intention of this blog is to give something back to the coding community.</p>
+          <p>Flow is the replacement for Prop-Types in ReactJS. When you install packages in your project, you will need the type definitions for these packages. This is a short post describing how to get these.</p>
 
 <p></p>
 
-<p>It makes use of a variety of open source projects including:</p>
+<p>The type-checking of the interfaces of functions and classes in Javascript is regarded as good practice as it ensures more robust code. Flow is React&rsquo;s solution to type-checking and is a direct competitor to Typescript. Compared to Typescript it has the convenience of adding another library to your package manager, rather than adding another compiled language. Therefore you can keep all your old settings that you have in your original Babel configuration.</p>
 
-<ul>
-<li><a href="https://github.com/spf13/cobra" target="_blank">Cobra</a></li>
-<li><a href="https://github.com/spf13/viper" target="_blank">Viper</a></li>
-<li><a href="https://github.com/spf13/jWalterWeatherman" target="_blank">J Walter Weatherman</a></li>
-<li><a href="https://github.com/spf13/cast" target="_blank">Cast</a></li>
-</ul>
+<p>In order to use type-checking, you will need to know the interface types of the packages that you install alongside React. The React-Router package is widely used and a good example. React Router passes params for the web-history as props to the child routes. Therefore for all your routes you are going to have to define the prop-types of the web-history (unless you want to ignore them).</p>
 
-<p>Learn more and contribute on <a href="https://github.com/spf13" target="_blank">GitHub</a>.</p>
+<p>Fortunately, Flow have thought of this and created a library of type-definitions called &lsquo;flow-typed&rsquo; that you can install in your project:</p>
 
-<h2 id="setup">Setup</h2>
+<p><a href="https://flow.org/en/docs/libdefs/" target="_blank">https://flow.org/en/docs/libdefs/</a></p>
 
-<p>Some fun facts about <a href="http://gohugo.io/" target="_blank">Hugo</a>:</p>
+<p>This post shows how to install and use this library.</p>
 
-<ul>
-<li>Built in <a href="http://golang.org/" target="_blank">Go</a></li>
-<li>Loosely inspired by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a></li>
-<li>Primarily developed by <a href="http://spf13.com/" target="_blank">spf13</a> on the train while commuting to and from Manhattan.</li>
-<li>Coded in <a href="http://vim.org" target="_blank">Vim</a> using <a href="http://vim.spf13.com/" target="_blank">spf13-vim</a></li>
-</ul>
+<p>Flow-typed uses a command-line-interface (CLI) for pulling the type definitions of packages that you require into a bin that it creates on your desktop computer. You let your project have access to this bin by installing &lsquo;flow-bin&rsquo; in your project.</p>
 
-<p>Have questions or suggestions? Feel free to <a href="https://github.com/spf13/hugo/issues/new" target="_blank">open an issue on GitHub</a> or <a href="https://twitter.com/spf13" target="_blank">ask me on Twitter</a>.</p>
+<p>To install the flow-typed CLI, from a terminal:</p>
 
-<p>Thanks for reading!</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">sudo npm install flow-typed -g</code></pre></div>
+
+<p>The install the flow type definition of the package(s) that you need, for example React-Router:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">flow-typed install react-router</code></pre></div>
+
+<p>From a terminal inside your project folder install, flow-bin:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-shell-script" data-lang="shell-script">npm install --save-dev flow-bin</code></pre></div>
+
+<p>Inside the component file in your project where you need the type definitions, add the import to the top of your file:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="nx">type</span> <span class="p">{</span> <span class="nx">RouterHistory</span><span class="p">,</span> <span class="nx">Location</span><span class="p">,</span> <span class="nx">Match</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router&#39;</span>
+</code></pre></div>
+
+<p>If you get stuck you can look in the flow-typed repository, showing a list of available packages:</p>
+
+<p><a href="https://github.com/flow-typed/flow-typed/tree/master/definitions/npm" target="_blank">https://github.com/flow-typed/flow-typed/tree/master/definitions/npm</a></p>
+
+<p>and within each folder, you get the type definitions:</p>
+
+<p><a href="https://github.com/flow-typed/flow-typed/blob/master/definitions/npm/react-router_v4.x.x/flow_v0.63.x-/react-router_v4.x.x.js" target="_blank">https://github.com/flow-typed/flow-typed/blob/master/definitions/npm/react-router_v4.x.x/flow_v0.63.x-/react-router_v4.x.x.js</a></p>
         </div>
         
       </div>

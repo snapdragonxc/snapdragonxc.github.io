@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CODING BLOG</title>
-    <link>https://www.example.com/</link>
-    <description>Recent content on CODING BLOG</description>
+    <title>Posts on CODING BLOG</title>
+    <link>https://www.example.com/posts/</link>
+    <description>Recent content in Posts on CODING BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; &lt;a href=&#34;https://github.com/snapdragonxc&#34;&gt;Snapdragonxc&lt;/a&gt; 2018</copyright>
     <lastBuildDate>Wed, 26 Sep 2018 13:08:23 +1000</lastBuildDate>
     
-	<atom:link href="https://www.example.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.example.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -96,17 +96,6 @@
       
       <guid>https://www.example.com/posts/flow/</guid>
       <description>&lt;p&gt;Flow is the replacement for Prop-Types in ReactJS. When you install packages in your project, you will need the type definitions for these packages. This is a short post describing how to get these.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://www.example.com/about/</link>
-      <pubDate>Fri, 22 Dec 2017 07:45:42 +1000</pubDate>
-      
-      <guid>https://www.example.com/about/</guid>
-      <description>&lt;p&gt;A lot of engineers post their problems and solutions on-line through forums or blogs. I have found this shared knowledge extremely helpfull. The intention of this blog is to give something back to the coding community.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>

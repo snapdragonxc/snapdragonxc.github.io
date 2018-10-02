@@ -3,67 +3,64 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://snapdragonxc.github.io/post/chapter-6/</loc>
-    <lastmod>2017-04-14T11:25:05-04:00</lastmod>
+    <loc>https://www.example.com/posts/aws-pt3/</loc>
+    <lastmod>2018-09-26T13:08:23+10:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/post/chapter-5/</loc>
-    <lastmod>2017-04-13T11:15:58-04:00</lastmod>
+    <loc>https://www.example.com/posts/aws-pt2/</loc>
+    <lastmod>2018-09-25T13:08:23+10:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/post/chapter-4/</loc>
-    <lastmod>2017-04-12T11:14:48-04:00</lastmod>
+    <loc>https://www.example.com/posts/aws-pt1/</loc>
+    <lastmod>2018-09-24T07:43:06+10:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/post/chapter-3/</loc>
-    <lastmod>2017-04-11T11:13:32-04:00</lastmod>
+    <loc>https://www.example.com/posts/spies/</loc>
+    <lastmod>2018-09-12T07:45:42+10:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/post/chapter-2/</loc>
-    <lastmod>2017-04-10T11:00:59-04:00</lastmod>
+    <loc>https://www.example.com/posts/test-runners/</loc>
+    <lastmod>2018-09-11T21:22:07+10:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/post/chapter-1/</loc>
-    <lastmod>2017-04-09T10:58:08-04:00</lastmod>
+    <loc>https://www.example.com/posts/reactjs-views/</loc>
+    <lastmod>2018-09-05T07:45:42+10:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/post/</loc>
-    <lastmod>2017-03-02T12:00:00-05:00</lastmod>
+    <loc>https://www.example.com/posts/redux/</loc>
+    <lastmod>2018-09-03T07:45:42+10:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/about/</loc>
+    <loc>https://www.example.com/posts/flow/</loc>
+    <lastmod>2018-09-02T07:45:42+10:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/</loc>
-    <lastmod>2017-04-14T11:25:05-04:00</lastmod>
+    <loc>https://www.example.com/about/</loc>
+    <lastmod>2017-12-22T07:45:42+10:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/categories/</loc>
+    <loc>https://www.example.com/</loc>
+    <lastmod>2018-09-26T13:08:23+10:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/contact/</loc>
-  </url>
-  
-  <url>
-    <loc>https://snapdragonxc.github.io/tags/scene/</loc>
-    <lastmod>2017-04-12T11:14:48-04:00</lastmod>
+    <loc>https://www.example.com/posts/</loc>
+    <lastmod>2018-09-26T13:08:23+10:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://snapdragonxc.github.io/tags/</loc>
-    <lastmod>2017-04-12T11:14:48-04:00</lastmod>
+    <loc>https://www.example.com/tags/</loc>
     <priority>0</priority>
   </url>
   
